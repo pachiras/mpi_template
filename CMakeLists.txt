@@ -12,3 +12,14 @@ add_executable(mpi_template main.cpp)
 # MPI
 find_package(MPI REQUIRED)
 target_link_libraries(mpi_template PUBLIC MPI::MPI_CXX)
+
+# Enable the testing features.
+enable_testing()
+
+# Add the test which is simply run the application.
+add_test(NAME run_exe COMMAND ${PROJECT_NAME})
+add_test(
+    NAME run_mpi
+    COMMAND mpirun -hostfile ./hostfile -n 300 ./build/mpi_template > test.log
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
