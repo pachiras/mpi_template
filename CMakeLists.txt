@@ -20,6 +20,6 @@ enable_testing()
 add_test(NAME run_exe COMMAND ${PROJECT_NAME})
 add_test(
     NAME run_mpi
-    COMMAND mpirun -hostfile ./hostfile -n 300 ./build/mpi_template > test.log
+    COMMAND mpirun -hostfile ./hostfile -n 300 ./build/mpi_template
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
