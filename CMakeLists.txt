@@ -17,9 +17,8 @@ target_link_libraries(mpi_template PUBLIC MPI::MPI_CXX)
 enable_testing()
 
 # Add the test which is simply run the application.
-add_test(NAME run_exe COMMAND ${PROJECT_NAME})
+add_test(NAME single_node COMMAND mpirun -n 16 ${PROJECT_NAME})
 add_test(
-    NAME run_mpi
-    COMMAND mpirun -hostfile ./hostfile -n 300 ./build/mpi_template
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    NAME multiple_nodes
+    COMMAND mpirun -hostfile ${PROJECT_SOURCE_DIR}/hostfile -n 300 ${PROJECT_NAME}
 )
